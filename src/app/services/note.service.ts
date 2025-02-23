@@ -1,26 +1,26 @@
 import { Injectable } from '@angular/core';
 import Note from '../../models/Note';
 import { Title } from '@angular/platform-browser';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NoteService {
+  readonly API_URL ="https://ca4a90201c2862adfc02.free.beeceptor.com/api/notes/";
+  
   notes: Note[];
+  
+  constructor(private http: HttpClient) {
+    this.notes = []
+  }
+ 
+  getNotes(){
+    return this.http.get<Note[]>(this.API_URL);
+  }
 
-  constructor() {
-    this.notes = [
-      {
-        id: this.creteId(),
-        tittle: "hola mundo",
-        marked: false
-      },
-      {
-        id: this.creteId(),
-        tittle: "Elian cita",
-        marked: true
-      }
-    ]
+  createNote(note: Note) {
+   return this.http.post<Note>(this.API_URL, note);
   }
 
   updateTitle(id: string, newTitle: string) {
@@ -36,9 +36,6 @@ export class NoteService {
     updatedNote.marked = !updatedNote.marked;
   }
 
-  createNote(note: Note) {
-    this.notes.unshift(note);
-  }
 
   creteId = () => {
     return Date.now().toString(36) + Math.random().toString(36).slice(2);
