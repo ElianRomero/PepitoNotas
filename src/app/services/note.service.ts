@@ -19,16 +19,6 @@ export class NoteService {
     return this.http.get<Note[]>(this.API_URL);
   }
 
-  createNote(note: Note) {
-   return this.http.post<Note>(this.API_URL, note);
-  }
-
-  updateTitle(id: string, newTitle: string) {
-    const updatedNote = this.notes.find((note) => note.id === id);
-    if (!updatedNote) return;
-
-    updatedNote.tittle = newTitle;
-  }
   updateMarked(id: string) {
     const updatedNote = this.notes.find((note) => note.id === id);
     if (!updatedNote) return;
