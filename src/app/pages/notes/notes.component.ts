@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { HeaderComponent } from '../../components/header/header.component';
 import { NoteService } from '../../services/note.service';
 import { NoteCardComponent } from '../../components/note-card/note-card.component';
+import { CreateNoteComponent } from '../../components/create-note/create-note.component';
 
 @Component({
   selector: 'app-notes',
   standalone: true,
-  imports: [HeaderComponent, NoteCardComponent],
+  imports: [HeaderComponent, NoteCardComponent, CreateNoteComponent],
   templateUrl: './notes.component.html',
   styleUrl: './notes.component.css'
 })
